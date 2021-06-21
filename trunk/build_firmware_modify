@@ -11,7 +11,8 @@ if [ ! -f configs/templates/$1.config ] ; then
 	exit 1
 fi
 
-cp -f configs/templates/$1.config .config
+## 与Actions的yml冲突 
+# cp -f configs/templates/$1.config .config
 
 ROOTDIR=`pwd`
 export ROOTDIR=$ROOTDIR
