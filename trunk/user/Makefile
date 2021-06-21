@@ -92,7 +92,7 @@ SHADOWSOCKS_ENABLE=y
 endif
 
 ifneq ($(filter y,$(CONFIG_FIRMWARE_INCLUDE_FRPC) $(CONFIG_FIRMWARE_INCLUDE_FRPS)),)
-FRP_ENABLE=y
+FRP_ENABLE=n
 endif
 
 ifneq ($(filter y,$(CONFIG_FIRMWARE_INCLUDE_WING) $(CONFIG_FIRMWARE_INCLUDE_TROJAN)),)
@@ -140,19 +140,7 @@ dir_y						+= xl2tpd
 dir_$(CONFIG_FIRMWARE_INCLUDE_RPL2TP)		+= rp-l2tp
 dir_y						+= lldt
 dir_y						+= scripts
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)						+= skipdbv2
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)						+= chinadns-ng
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)						+= lua51
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)                       +=microsocks
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)	        += dns2tcp
-ifeq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
-dir_$(CONFIG_FIRMWARE_INCLUDE_V2RAY)	        += v2ray
-dir_$(TROJAN_ENABLE) 			+= trojan
-endif
-dir_$(CONFIG_FIRMWARE_INCLUDE_SSOBFS)                      += simple-obfs
 
-dir_$(CONFIG_FIRMWARE_INCLUDE_ZEROTIER)	                       += zerotier
-dir_$(CONFIG_FIRMWARE_INCLUDE_WYY)						+= unblockmusic
 dir_$(CONFIG_FIRMWARE_INCLUDE_SMARTDNS)	+= smartdns
 dir_$(OPENSSH_ENABLED)				+= openssh
 dir_$(DROPBEAR_ENABLED)				+= dropbear
@@ -196,9 +184,12 @@ ifeq ($(CONFIG_FIRMWARE_INCLUDE_WING),y)
 dir_y 			+= wing
 dir_y 			+= ipt2socks
 endif
+dir_$(TROJAN_ENABLE) 			+= trojan
 dir_$(CONFIG_FIRMWARE_INCLUDE_REDSOCKS)			+= redsocks
 dir_$(CONFIG_FIRMWARE_INCLUDE_3PROXY)			+= 3proxy
-
+dir_$(CONFIG_FIRMWARE_INCLUDE_V2RAY)            += v2ray 
+dir_$(CONFIG_FIRMWARE_INCLUDE_ZEROTIER)         += zerotier
+dir_$(CONFIG_FIRMWARE_INCLUDE_WYY)              += unblockmusic 
 
 ifdef CONFIG_BLK_DEV_SD
 dir_$(CONFIG_FIRMWARE_INCLUDE_HDPARM)		+= hdparm
